@@ -4,9 +4,12 @@
     Le binding:<input [(ngModel)]="id" readonly class="form-control">
   </div>
 <div class="form-group">
+  <label>Filtre </label>
   <input type="text" placeholder="Filtre" [(ngModel)]="searchTerm" class="form-control">
-  <button (click)="selectedPokemon(searchTerm)" class="form-control btn btn-success"> Go !</button>
 </div>
+  <div class="form-group">
+    <button (click)="selectedPokemon(searchTerm)" class="form-control btn btn-success"> Go !</button>
+  </div>
   <div class="form-group">
     <label>Selectionner :</label>
     <select [(ngModel)]="pokemon" class="form-control">

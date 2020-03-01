@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Pokemon} from '../../model/pokemon';
 import {forEach} from '@angular/router/src/utils/collection';
 import {HttpClient} from '@angular/common/http';
+import {PokemonServiceService} from '../../services/pokemon-service.service';
 
 @Component({
   selector: 'app-pokemons',
@@ -10,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PokemonsComponent implements OnInit {
   pokemons: Pokemon[];
-  constructor(private  http: HttpClient) {
+  constructor(private  pokemonApiService: PokemonServiceService) {
     this.pokemons = [
       new Pokemon(0, 'Alpha'),
       new Pokemon(1, 'Beta'),
@@ -23,8 +24,11 @@ export class PokemonsComponent implements OnInit {
     ];
   }
   ngOnInit() {
-   const resp = this.http.get('https://pokeapi.co/api/v2/pokemon/1');
-   resp.subscribe((data) => console.log(data));
+    this.pokemonApiService.getPokemons().subscribe((data) => {
+      data.results.forEach((e, index) => {
+        this.pokemons.push(new Pokemon(index, e.name));
+      });
+    });
   }
   getListPokemon() {
     return this.pokemons;
