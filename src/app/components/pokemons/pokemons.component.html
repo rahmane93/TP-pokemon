@@ -1,20 +1,19 @@
-
+   <div class="form-group" >
+      Saisie du pokemon:<input [(ngModel)]="name" class="form-control">
+      Valeur saisie :<input [(ngModel)]="name" readonly class="form-control">
+    </div>
   <div class="form-group">
-    Saisie du pokemon:<input [(ngModel)]="id" class="form-control">
-    Le binding:<input [(ngModel)]="id" readonly class="form-control">
+    <label>Filtre </label>
+    <input type="text" placeholder="Filtre" [(ngModel)]="searchTerm" class="form-control">
   </div>
-<div class="form-group">
-  <label>Filtre </label>
-  <input type="text" placeholder="Filtre" [(ngModel)]="searchTerm" class="form-control">
-</div>
-  <div class="form-group">
-    <button (click)="selectedPokemon(searchTerm)" class="form-control btn btn-success"> Go !</button>
-  </div>
-  <div class="form-group">
-    <label>Selectionner :</label>
-    <select [(ngModel)]="pokemon" class="form-control">
-      <option *ngFor="let pokemon of pokemons | filterPokemonPipe: searchTerm " [ngValue]="pokemon.name"> {{pokemon.name}}</option>
-    </select>
-
-  </div>
-
+    <div class="form-group">
+      <label>Selectionner : </label>
+      <select [(ngModel)]="pokemonSelectedId" class="form-control">
+        <option [value]="pokemon.getId()" *ngFor="let pokemon of pokemons | filterPokemonPipe: searchTerm" >{{pokemon.getName()}} </option>
+      </select>
+      {{pokemonSelectedId}}
+    </div>
+   <div class="form-group">
+     <button (click)="getPokemonSelectedInfo()" class = "form-control btn btn-success">Go !</button>
+   </div>
+   <app-pokemon-info [pokemonSelectedInfo]="pokemonSelectedInfos" [(ngModel)]="pokemonSelectedInfos" *ngIf="pokemonSelectedInfos"></app-pokemon-info>

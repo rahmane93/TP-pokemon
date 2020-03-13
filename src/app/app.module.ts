@@ -9,6 +9,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 import { FilterPokemonPipePipe } from './components/pipe/filter-pokemon--pipe.pipe';
 import {PokemonServiceService} from './services/pokemon-service.service';
+import { PokemonInfoComponent } from './components/pokemon-info/pokemon-info.component';
+import {PokemonPartageServiceService} from './services/pokemon-partage-service.service';
 
 const routes: Routes = [
   {path: 'app', component: AppComponent } ,
@@ -19,6 +21,7 @@ const routes: Routes = [
     AppComponent,
     PokemonsComponent,
     FilterPokemonPipePipe,
+    PokemonInfoComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -26,7 +29,7 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [PokemonServiceService],
+  providers: [PokemonServiceService, PokemonPartageServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

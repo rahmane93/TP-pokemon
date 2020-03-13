@@ -8,7 +8,7 @@ export class FilterPokemonPipePipe implements PipeTransform {
 
   transform(pokemons: Pokemon[], searchTerm: string): Pokemon[] {
     if (pokemons && searchTerm) {
-      return pokemons.filter( pokemon => pokemon.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
+      return pokemons.filter( pokemon => pokemon.getName().toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
     };
     return pokemons;
   }
