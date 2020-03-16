@@ -1,0 +1,17 @@
+
+  <div class="form-group">
+    Saisie du pokemon:<input [(ngModel)]="id" class="form-control">
+    Le binding:<input [(ngModel)]="id" readonly class="form-control">
+  </div>
+<div class="form-group">
+  <input type="text" placeholder="Filtre" [(ngModel)]="searchTerm" class="form-control">
+  <button (click)="selectedPokemon(searchTerm)" class="form-control btn btn-success"> Go !</button>
+</div>
+  <div class="form-group">
+    <label>Selectionner :</label>
+    <select [(ngModel)]="pokemon" class="form-control">
+      <option *ngFor="let pokemon of pokemons | filterPokemonPipe: searchTerm " [ngValue]="pokemon.name"> {{pokemon.name}}</option>
+    </select>
+
+  </div>
+
