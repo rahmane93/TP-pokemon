@@ -23,7 +23,7 @@ export class PokemonsComponent implements OnInit {
 
     this.pokemonApiService.getPokemons().subscribe((data) => {
       console.log(data);
-      data.results.forEach((e, index) => { this.pokemons.push(new Pokemon(index, e.name, e.url)); });
+      data.results.forEach((e, index) => { this.pokemons.push(new Pokemon(index + 1, e.name, e.url)); });
     });
   }
   getPokemonSelectedInfo() {

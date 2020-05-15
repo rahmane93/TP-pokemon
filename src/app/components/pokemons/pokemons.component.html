@@ -1,19 +1,24 @@
-   <div class="form-group" >
-      Saisie du pokemon:<input [(ngModel)]="name" class="form-control">
-      Valeur saisie :<input [(ngModel)]="name" readonly class="form-control">
-    </div>
-  <div class="form-group">
-    <label>Filtre </label>
-    <input type="text" placeholder="Filtre" [(ngModel)]="searchTerm" class="form-control">
+<div class = 'row form-group'>
+  <div class="col" >
+    <input [(ngModel)]="name" placeholder="Saisir le nom du pokemon" class="form-control">
   </div>
-    <div class="form-group">
-      <label>Selectionner : </label>
-      <select [(ngModel)]="pokemonSelectedId" class="form-control">
-        <option [value]="pokemon.getId()" *ngFor="let pokemon of pokemons | filterPokemonPipe: searchTerm" >{{pokemon.getName()}} </option>
-      </select>
-      {{pokemonSelectedId}}
+  <div class="col" >
+    <input [(ngModel)]="name" placeholder="Valeur saisie" readonly class="form-control">
+  </div>
+</div>
+<div class = 'row form-group'>
+    <div class="col">
+      <input type="text" placeholder="Filtrer à partir du nom" [(ngModel)]="searchTerm" class="form-control">
     </div>
-   <div class="form-group">
-     <button (click)="getPokemonSelectedInfo()" class = "form-control btn btn-success">Go !</button>
-   </div>
-   <app-pokemon-info [pokemonSelectedInfo]="pokemonSelectedInfos" [(ngModel)]="pokemonSelectedInfos" *ngIf="pokemonSelectedInfos"></app-pokemon-info>
+    <div class="col">
+        <select [(ngModel)]="pokemonSelectedId" class="form-control">
+          <option [value]="pokemon.getId()" *ngFor="let pokemon of pokemons | filterPokemonPipe: searchTerm" >{{pokemon.getName()}} </option>
+        </select>
+    </div>
+    <div class="col">
+      <button (click)="getPokemonSelectedInfo()" class = "form-control btn btn-success">Voir les details du pokemon selectionné!</button>
+    </div>
+</div>
+ <div class="row form-group">
+   <app-pokemon-info class="col" [pokemonSelectedInfo]="pokemonSelectedInfos" *ngIf="pokemonSelectedInfos"></app-pokemon-info>
+</div>
